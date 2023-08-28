@@ -1,7 +1,10 @@
 package br.edu.ifam.chat.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.catalina.connector.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,15 +19,18 @@ import br.edu.ifam.chat.model.Contato;
 @RestController
 public class ContatoController {
 	
+	List<Contato> contatos =  new ArrayList<>();
+	
 	@GetMapping
-	List<Contato> getAll(){
-		return null;
+	ResponseEntity<List<Contato>> getContatos(){
+		return ResponseEntity.ok(contatos);
 	}
 	
 	@PostMapping
-	Contato newContact(@RequestBody Contato contato) {
-		return null;
-	}
+	ResponseEntity<Contato> setContato(@RequestBody Contato contato){
+			contatos.add(contato);
+			return ResponseEntity.created(null).body(contato);
+		}
 	
 	@PutMapping("/(id)")
 	void deleteContato(@PathVariable Long id) {
