@@ -22,32 +22,32 @@ import br.edu.ifam.chat.service.ContatoService;
 @RequestMapping("/Contato")
 @RestController
 public class ContatoController {
-	
-	List<Contato> contatos =  new ArrayList<>();
-	
+
+	List<Contato> contatos = new ArrayList<>();
+
 	@Autowired
 	ContatoService contatoservice;
-	
+
 	@GetMapping
-	ResponseEntity<List<Contato>> getContato(){
-		List<Contato>contatos = contatoservice.getContatos();
-		if(contatos.isEmpty()) 
+	ResponseEntity<List<Contato>> getContato() {
+		List<Contato> contatos = contatoservice.getContatos();
+		if (contatos.isEmpty())
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(contatos);
-		
+
 		return ResponseEntity.ok(contatos);
 	}
-	
+
 	@PostMapping
-	ResponseEntity<Contato> setContato(@RequestBody Contato contato){
-			contatos.add(contato);
-			return ResponseEntity.created(null).body(contato);
-		}
-	
+	ResponseEntity<Contato> setContato(@RequestBody Contato contato) {
+		contatos.add(contato);
+		return ResponseEntity.created(null).body(contato);
+	}
+
 	@PutMapping("/(id)")
-	ResponseEntity<Contato> getContato(@PathVariable int id){
+	ResponseEntity<Contato> getContato(@PathVariable int id) {
 		try {
 			return ResponseEntity.ok(contatoservice.getContato(id));
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Contato());
 		}
 	}
