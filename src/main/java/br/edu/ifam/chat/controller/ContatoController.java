@@ -44,7 +44,7 @@ public class ContatoController {
 	}
 
 	@PutMapping("/(id)")
-	ResponseEntity<Contato> getContato(@PathVariable int id) {
+	ResponseEntity<Contato> getContato(@PathVariable Long id) {
 		try {
 			return ResponseEntity.ok(contatoservice.getContato(id));
 		} catch (Exception e) {

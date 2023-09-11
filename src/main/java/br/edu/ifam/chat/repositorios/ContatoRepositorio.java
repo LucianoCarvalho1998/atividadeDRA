@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.edu.ifam.chat.model.Contato;
 
-public interface Contatopositorio extends JpaRepository<Contato, Long> {
+public interface ContatoRepositorio extends JpaRepository<Contato, Long> {
 
 }

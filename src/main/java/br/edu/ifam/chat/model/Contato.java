@@ -1,5 +1,6 @@
 package br.edu.ifam.chat.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,8 +8,10 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Contato {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Id",unique = true)
 	private Long id;
 	
 	private String nome;
@@ -89,6 +92,14 @@ public class Contato {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }
